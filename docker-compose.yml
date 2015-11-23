@@ -1,0 +1,15 @@
+rabbitmq-server:
+    image: rabbitmq
+    expose:
+      - 5672
+    command: rabbitmq-server
+
+logging:
+    build: services/logging
+    links:
+      - rabbitmq-server
+
+writer:
+    build: services/writer
+    links:
+      - rabbitmq-server
